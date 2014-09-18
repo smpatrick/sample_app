@@ -32,7 +32,7 @@ describe User do
     it { should_not be_valid }
   end
 
-    describe "when name is too long" do
+  describe "when name is too long" do
     before { @user.name = "a" * 51 }
     it { should_not be_valid }
   end
@@ -67,7 +67,7 @@ describe User do
     it { should_not be_valid }
   end
 
-    describe "when email address is already taken" do
+  describe "when email address is already taken" do
     before do
       user_with_same_email = @user.dup
       user_with_same_email.email = @user.email.upcase
@@ -78,11 +78,12 @@ describe User do
   end
   
   describe "when password is not present" do
-  before do
-    @user = User.new(name: "Example User", email: "user@example.com",
+    before do
+      @user = User.new(name: "Example User", email: "user@example.com",
                      password: " ", password_confirmation: " ")
+    end
+    it { should_not be_valid }
   end
-  it { should_not be_valid }
 
   describe "when password doesn't match confirmation" do
     before { @user.password_confirmation = "mismatch" }
